@@ -29,11 +29,16 @@ class AttributeFormatter
             <<<TABLEROW
             <tr><td%s>%s %s</td><td>%s%s</td></tr>
             TABLEROW,
-            $attribute->isStatic() ? ' style="text-decoration: underline"' : '',
+            $this->tableColumnStyle($attribute),
             $this->mapModifierToSymbol[$attribute->getModifier()],
             $attribute->getName(),
             $attribute->getType(),
             $additionalInfo,
         );
+    }
+
+    proteted function tableColumnStyle(Attribute $attribute): string
+    {
+        return sprintf(' style="text-align:left;%s"', $attribute->isStatic() ? 'text-decoration: underline;' : '');
     }
 }
